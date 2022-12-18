@@ -5,6 +5,7 @@ version: 2.1
 parameters:
   testword: 
     type: string
+    default: 'tester'
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
