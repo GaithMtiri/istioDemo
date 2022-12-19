@@ -92,7 +92,7 @@ jobs:
           name: "deploy_app"
           command: |  
             export CIRCLE_TOKENN='?circle-token=$CIRCLE_TOKEN'
-            curl https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/69/artifacts$CIRCLE_TOKENN | grep -o 'https://[^"]*'
+            curl https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/69/artifacts$CIRCLE_TOKENN | grep -o 'https'
 
 
             
