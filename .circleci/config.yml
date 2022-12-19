@@ -91,7 +91,8 @@ jobs:
       - run:
           name: "deploy_app"
           command: |  
-            curl -X GET "https://circleci.com/api/v2/project/github/GaithMtiri/istioDemo/69/artifacts" -H "Accept: application/json" -u "$CIRCLE_API_TOKEN:"  
+          $CIRCLE_TOKEN
+            curl https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/latest/artifacts -H "Circle-Token: $CIRCLE_TOKEN"
             ls -la
 
   cleanup:
