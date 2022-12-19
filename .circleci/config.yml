@@ -91,7 +91,7 @@ jobs:
       - run:
           name: "deploy_app"
           command: |  
-            curl https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/latest/artifacts -H "Circle-Token: $CIRCLE_TOKEN"
+            curl https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/69/artifacts -H "Circle-Token: $CIRCLE_TOKEN"
             ls -la
 
   cleanup:
