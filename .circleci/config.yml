@@ -106,7 +106,15 @@ jobs:
     steps:
       - run:
           name: "say-hey"
-          command: echo hey
+          command: |
+            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/github/GaithMtiri/istioDemo/$CIRCLE_BUILD_NUM/artifacts" \
+            -H "Accept: application/json" \
+            -u "$CIRCLE_API_TOKEN:")
+            # generate a heredoc in BASH_ENV
+            # the '\<<' is a CircleCI escape
+            echo "read -r -d '' STORED_ARTIFACTS \<< 'EOF_ARTIFACTS'" >> $BASH_ENV
+            echo "$artifacts" >> $BASH_ENV
+            echo "EOF_ARTIFACTS" >> $BASH_ENV
       - run:
           name: "say-hey2"
           command: echo hey22
