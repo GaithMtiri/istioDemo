@@ -115,8 +115,8 @@ workflows:
       - deploy_istio:
           requires:
             - configure_minikube
-  scenario:
-    jobs:
-      - scenario1
+  # scenario:
+  #   jobs:
+  #     - scenario1
       
             
