@@ -33,6 +33,22 @@ jobs:
             terraform init
             terraform plan
             terraform apply -auto-approve
+      - persist_to_workspace:
+          root: .
+          paths:
+            - terraform/terraform-aws-ec2-nginx-main/terraform.tfstate
+  
+  install_istio:
+    attach_workspace:
+      at: ./
+    docker: 
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: "test"
+          command: cat terraform.tfstate
+
                          
 
 
@@ -40,3 +56,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - create_vm
+      - install_istio
