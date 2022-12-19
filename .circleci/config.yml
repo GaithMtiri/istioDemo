@@ -32,6 +32,7 @@ jobs:
             cd terraform/terraform-aws-ec2-nginx-main/
             terraform init
             terraform plan
+            terraform apply -auto-approve
                          
 
 
