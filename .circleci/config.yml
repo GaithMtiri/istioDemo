@@ -100,11 +100,11 @@ jobs:
       - image: hashicorp/terraform:light
     steps:
       - run:
-        name: "say-hey"
-        command: echo hey
+          name: "say-hey"
+          command: echo hey
       - run:
-        name: "say-hey2"
-        command: echo hey22
+          name: "say-hey2"
+          command: echo hey22
 workflows:
   say-hello-workflow:
     jobs:
