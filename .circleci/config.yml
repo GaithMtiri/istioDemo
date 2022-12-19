@@ -90,8 +90,8 @@ jobs:
       - checkout
       - run:
           name: "deploy_app"
-          command: |
-            curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/lastest/artifacts  | grep -o "https://[^*]*"  | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
+          command: |  
+            curl -X GET "https://circleci.com/api/v2/project/github/GaithMtiri/istioDemo/lastest/artifacts" -H "Accept: application/json" -u "$CIRCLE_API_TOKEN:"  | grep -o "https://[^*]*"  | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
             ls -la
 
   cleanup:
