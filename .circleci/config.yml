@@ -28,7 +28,7 @@ jobs:
       - run:
           name: "see auth file"
           command: |
-            cd terraform/terraform-aws-ec2-nginx-main/terraform.tfvars
+            cd terraform/terraform-aws-ec2-nginx-main/
             terraform init
             terraform plan
                          
