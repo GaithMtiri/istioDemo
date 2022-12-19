@@ -24,6 +24,10 @@ jobs:
                           tester
                           test
                           EOL
+      - run:
+          name: "see auth file"
+          command: cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars
+                         
 
 
 workflows:
