@@ -85,25 +85,14 @@ jobs:
   
   scenario1:
     docker: 
-      - image: hashicorp/terraform:light
+      - image: ubuntu
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
       - run:
           name: "deploy_app"
           command: |
-            apk update
-            apk upgrade
-            apk --no-cache add curl
-            echo YOO
-            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/(vcs)/(org)/(project)/$CIRCLE_BUILD_NUM/artifacts" \
-            -H "Accept: application/json" \
-            -u "$CIRCLE_API_TOKEN:")
-            echo "read -r -d '' STORED_ARTIFACTS \<< 'EOF_ARTIFACTS'" >> $BASH_ENV
-            echo "$artifacts" >> $BASH_ENV
-            echo "EOF_ARTIFACTS" >> $BASH_ENV
-            echo $STORED_ARTIFACTS
+            curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/lastest/artifacts  | grep -o "https://[^"]*"  | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
+            ls -la
 
   cleanup:
     docker: 
