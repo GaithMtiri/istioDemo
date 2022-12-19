@@ -20,7 +20,7 @@ jobs:
       - run:
           name: "create auth file"
           command: |
-                    cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars << EOL
+                    cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars \<< EOL
                           tester
                           test
                           EOL
