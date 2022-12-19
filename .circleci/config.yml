@@ -5,10 +5,10 @@ version: 2.1
 parameters:
   aws_auth_acc: 
     type: string
-    default: 'PARSE ACC'
+    default: $aws_auth_acc
   aws_auth_sec: 
     type: string
-    default: 'PARSE SEC'
+    default: $aws_auth_sec
 
 
 jobs:
