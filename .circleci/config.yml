@@ -93,13 +93,9 @@ jobs:
       - run:
           name: "deploy_app"
           command: |
-            sleep 30
-            mv scenario1.sh ./
-            cd ./
-            cat key.pem
-            chmod 400 key.pem
-            ip=$(sed 's/.//;s/.$//' ip.txt)
-            cat scenario1.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
+            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/(vcs)/(org)/(project)/$CIRCLE_BUILD_NUM/artifacts" \
+            -H "Accept: application/json" \
+            -u "$CIRCLE_API_TOKEN:")
 
   cleanup:
     docker: 
