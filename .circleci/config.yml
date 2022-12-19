@@ -97,14 +97,14 @@ jobs:
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   scenario1:
     docker: 
-        - image: hashicorp/terraform:light
-        steps:
-          - run:
-            name: "say-hey"
-            command: echo hey
-          - run:
-            name: "say-hey2"
-            command: echo hey22
+      - image: hashicorp/terraform:light
+    steps:
+      - run:
+        name: "say-hey"
+        command: echo hey
+      - run:
+        name: "say-hey2"
+        command: echo hey22
 workflows:
   say-hello-workflow:
     jobs:
