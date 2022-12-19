@@ -123,7 +123,9 @@ jobs:
 workflows:
   deploy_demo:
     jobs:
-      - create_vm
+      - create_vm:
+          requires:
+            - hold
       - configure_minikube:
           requires:
             - create_vm
@@ -133,8 +135,12 @@ workflows:
   Injecting_an_HTTP_abort_fault:
     jobs:
       - scenario1
+          requires:
+            - hold
   cleanup:
     jobs:
       - cleanup
+          requires:
+            - hold
       
             
