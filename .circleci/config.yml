@@ -85,16 +85,12 @@ jobs:
   
   scenario1:
     docker: 
-      - image: ubuntu
+      - image: osexp2000/ubuntu-with-utils
     steps:
       - checkout
       - run:
           name: "deploy_app"
           command: |
-            apt-get update
-            apt-get upgrade -y
-            apt-get install curl -y
-            apt-get install wget -y
             curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/GaithMtiri/istioDemo/lastest/artifacts  | grep -o "https://[^*]*"  | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
             ls -la
 
