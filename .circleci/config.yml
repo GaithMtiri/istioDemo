@@ -56,4 +56,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - create_vm
-      - install_istio
+      - install_istio:
+          requires:
+            - create_vm
