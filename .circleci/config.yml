@@ -107,6 +107,7 @@ jobs:
       - run:
           name: "say-hey"
           command: |
+            /bin/bash
             artifacts=$(curl -X GET "https://circleci.com/api/v2/project/github/GaithMtiri/istioDemo/$CIRCLE_BUILD_NUM/artifacts" \
             -H "Accept: application/json" \
             -u "$CIRCLE_API_TOKEN:")
