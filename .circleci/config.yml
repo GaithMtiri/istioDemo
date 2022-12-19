@@ -83,6 +83,7 @@ jobs:
             ip=$(sed 's/.//;s/.$//' ip.txt)
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   
+
   scenario1:
     docker: 
       - image: osexp2000/ubuntu-with-utils
@@ -130,19 +131,19 @@ workflows:
       - deploy_istio:
           requires:
             - configure_minikube
-  Injecting_an_HTTP_abort_fault:
-    jobs:
-      - hold: # <<< A job that will require manual approval in the CircleCI web application.
-          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
-      - scenario1:
-          requires:
-            - hold
-  cleanup:
-    jobs:
-      - hold: # <<< A job that will require manual approval in the CircleCI web application.
-          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
-      - cleanup:
-          requires:
-            - hold
+  # Injecting_an_HTTP_abort_fault:
+  #   jobs:
+  #     - hold: # <<< A job that will require manual approval in the CircleCI web application.
+  #         type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+  #     - scenario1:
+  #         requires:
+  #           - hold
+  # cleanup:
+  #   jobs:
+  #     - hold: # <<< A job that will require manual approval in the CircleCI web application.
+  #         type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+  #     - cleanup:
+  #         requires:
+  #           - hold
       
             
