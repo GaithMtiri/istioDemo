@@ -103,7 +103,7 @@ jobs:
             echo "read -r -d '' STORED_ARTIFACTS \<< 'EOF_ARTIFACTS'" >> $BASH_ENV
             echo "$artifacts" >> $BASH_ENV
             echo "EOF_ARTIFACTS" >> $BASH_ENV
-            echo $BASH_ENV
+            echo $STORED_ARTIFACTS
 
   cleanup:
     docker: 
