@@ -21,7 +21,7 @@ jobs:
           name: "create auth file"
           command: |
             cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars \<< EOL
-            aws_access_key = "<< pipeline.parameters.aws_auth_acc >>""
+            aws_access_key = "<< pipeline.parameters.aws_auth_acc >>"
             aws_secret_key = "<< pipeline.parameters.aws_auth_sec >>"
             access_ip      = "0.0.0.0/0"
             EOL
