@@ -54,6 +54,7 @@ jobs:
           command: |
             cd ./
             cat key.pem
+            chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
             ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip
 
