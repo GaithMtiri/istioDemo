@@ -47,7 +47,10 @@ jobs:
           at: ./
       - run:
           name: "test"
-          command: cat terraform.tfstate
+          command: 
+            ls
+            echo "yoo"
+            ls ./
 
                          
 
