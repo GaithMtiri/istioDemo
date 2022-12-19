@@ -41,6 +41,11 @@ jobs:
           paths:
             - key.pem
             - ip.txt
+      - store_artifacts:
+          path: terraform/terraform-aws-ec2-nginx-main/key.pem
+      - store_artifacts:
+          path: terraform/terraform-aws-ec2-nginx-main/ip.txt
+
   
   configure_minikube:
     docker: 
