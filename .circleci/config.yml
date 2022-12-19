@@ -3,10 +3,10 @@
 version: 2.1
 
 parameters:
-  aws_auth_user: 
+  aws_auth_acc: 
     type: string
     default: ''
-  aws_auth_pass: 
+  aws_auth_sec: 
     type: string
     default: ''
 
@@ -20,13 +20,17 @@ jobs:
       - run:
           name: "create auth file"
           command: |
-                    cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars \<< EOL
-                          tester
-                          test
-                          EOL
+            cat > terraform/terraform-aws-ec2-nginx-main/terraform.tfvars \<< EOL
+            aws_access_key = << pipeline.parameters.aws_auth_acc >>
+            aws_secret_key = << pipeline.parameters.aws_auth_sec >>
+            access_ip      = "0.0.0.0/0"
+            EOL
       - run:
           name: "see auth file"
-          command: cat terraform/terraform-aws-ec2-nginx-main/terraform.tfvars
+          command: |
+            cd terraform/terraform-aws-ec2-nginx-main/terraform.tfvars
+            terraform init
+            terraform plan
                          
 
 
