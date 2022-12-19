@@ -16,8 +16,8 @@ resource "aws_key_pair" "key_pair" {
 
 # Create a EC2 Instance (Ubuntu 20)
 resource "aws_instance" "node" {
-  instance_type          = "t2.micro" # free instance
-  ami                    = "ami-0d527b8c289b4af7f"
+  instance_type          = "t2.large" # free instance
+  ami                    = "ami-09bbc74353976b63f"
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
@@ -29,7 +29,7 @@ resource "aws_instance" "node" {
   user_data = file("${path.root}/ec2/userdata.tpl")
 
   root_block_device {
-    volume_size = 10
+    volume_size = 80
   }
 }
 

@@ -12,19 +12,21 @@ parameters:
 
 
 jobs:
-  use_variables:
+  create_vm:
     docker:
-      - image: cimg/base:stable
+      - image: hashicorp/terraform:light
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!  << pipeline.parameters.testword >>"
-      - run:
-          name: "test file"
-          command: "cat text.txt"
+          name: "create auth file"
+          command: |
+          cat > terraform\terraform-aws-ec2-nginx-main 2\terraform.tfvars << EOL
+          tester
+          test
+          EOL
+
 
 workflows:
   say-hello-workflow:
     jobs:
-      - use_variables
+      - create_vm
