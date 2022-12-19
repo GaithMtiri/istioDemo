@@ -75,7 +75,7 @@ jobs:
             cat key.pem
             chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
-            ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip ' sudo curl -L https://istio.io/downloadIstio | sh -;cd istio-1.16.1;sudo su; export PATH=$PWD/bin:$PATH; istioctl install --set profile=demo -y; kubectl label namespace default istio-injection=enabled; kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml' 
+            ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip ' sudo su; curl -L https://istio.io/downloadIstio | sh -; cd istio-1.16.1; export PATH=$PWD/bin:$PATH; istioctl install --set profile=demo -y; kubectl label namespace default istio-injection=enabled; kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml' 
 
 workflows:
   say-hello-workflow:
