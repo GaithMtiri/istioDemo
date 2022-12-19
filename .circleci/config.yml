@@ -123,6 +123,8 @@ jobs:
 workflows:
   deploy_demo:
     jobs:
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
       - create_vm:
           requires:
             - hold
@@ -134,11 +136,15 @@ workflows:
             - configure_minikube
   Injecting_an_HTTP_abort_fault:
     jobs:
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
       - scenario1:
           requires:
             - hold
   cleanup:
     jobs:
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
       - cleanup:
           requires:
             - hold
