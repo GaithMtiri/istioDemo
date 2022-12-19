@@ -39,12 +39,12 @@ jobs:
             - terraform/terraform-aws-ec2-nginx-main/terraform.tfstate
   
   install_istio:
-    attach_workspace:
-      at: ./
     docker: 
       - image: hashicorp/terraform:light
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: "test"
           command: cat terraform.tfstate
