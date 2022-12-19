@@ -101,7 +101,10 @@ jobs:
             ip=$(sed 's/.//;s/.$//' ip.txt)
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   scenario1:
-    - checkout
+    docker: 
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
       - attach_workspace:
           at: ./
       - run:
@@ -113,7 +116,7 @@ jobs:
             cat key.pem
             chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
-            
+
 workflows:
   say-hello-workflow:
     jobs:
