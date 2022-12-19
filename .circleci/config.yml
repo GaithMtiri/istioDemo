@@ -34,9 +34,9 @@ jobs:
             terraform plan
             terraform apply -auto-approve
       - persist_to_workspace:
-          root: .
+          root: terraform/terraform-aws-ec2-nginx-main
           paths:
-            - terraform/terraform-aws-ec2-nginx-main/terraform.tfstate
+            - terraform.tfstate
   
   install_istio:
     docker: 
