@@ -134,12 +134,12 @@ workflows:
             - configure_minikube
   Injecting_an_HTTP_abort_fault:
     jobs:
-      - scenario1
+      - scenario1:
           requires:
             - hold
   cleanup:
     jobs:
-      - cleanup
+      - cleanup:
           requires:
             - hold
       
