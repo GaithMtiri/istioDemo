@@ -101,24 +101,19 @@ jobs:
             ip=$(sed 's/.//;s/.$//' ip.txt)
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   scenario1:
-    docker: 
-      - image: hashicorp/terraform:light
-    steps:
+    - checkout
+      - attach_workspace:
+          at: ./
       - run:
-          name: "say-hey"
+          name: "deploy_app"
           command: |
-            /bin/bash
-            artifacts=$(curl -X GET "https://circleci.com/api/v2/project/github/GaithMtiri/istioDemo/$CIRCLE_BUILD_NUM/artifacts" \
-            -H "Accept: application/json" \
-            -u "$CIRCLE_API_TOKEN:")
-            # generate a heredoc in BASH_ENV
-            # the '\<<' is a CircleCI escape
-            echo "read -r -d '' STORED_ARTIFACTS \<< 'EOF_ARTIFACTS'" >> $BASH_ENV
-            echo "$artifacts" >> $BASH_ENV
-            echo "EOF_ARTIFACTS" >> $BASH_ENV
-      - run:
-          name: "say-hey2"
-          command: echo hey22
+            sleep 120
+            mv expose_app.sh ./
+            cd ./
+            cat key.pem
+            chmod 400 key.pem
+            ip=$(sed 's/.//;s/.$//' ip.txt)
+            
 workflows:
   say-hello-workflow:
     jobs:
