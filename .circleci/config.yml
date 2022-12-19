@@ -83,23 +83,6 @@ jobs:
             ip=$(sed 's/.//;s/.$//' ip.txt)
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   
-  create-http-delay:
-    docker: 
-      - image: hashicorp/terraform:light
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ./
-      - run:
-          name: "deploy_app"
-          command: |
-            sleep 120
-            mv expose_app.sh ./
-            cd ./
-            cat key.pem
-            chmod 400 key.pem
-            ip=$(sed 's/.//;s/.$//' ip.txt)
-            cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
   scenario1:
     docker: 
       - image: hashicorp/terraform:light
@@ -110,15 +93,35 @@ jobs:
       - run:
           name: "deploy_app"
           command: |
-            sleep 120
-            mv expose_app.sh ./
+            sleep 30
+            mv scenario1.sh ./
             cd ./
             cat key.pem
             chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
+            cat scenario1.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
+
+  cleanup:
+    docker: 
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: "deploy_app"
+          command: |
+            sleep 30
+            mv cleanup.sh ./
+            cd ./
+            cat key.pem
+            chmod 400 key.pem
+            ip=$(sed 's/.//;s/.$//' ip.txt)
+            cat cleanup.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
+
 
 workflows:
-  say-hello-workflow:
+  deploy_demo:
     jobs:
       - create_vm
       - configure_minikube:
@@ -127,8 +130,11 @@ workflows:
       - deploy_istio:
           requires:
             - configure_minikube
-  scenario:
+  Injecting_an_HTTP_abort_fault:
     jobs:
       - scenario1
+  cleanup:
+    jobs:
+      - cleanup
       
             
