@@ -28,6 +28,7 @@ jobs:
       - run:
           name: "see auth file"
           command: |
+            sudo apt install jq -y
             cat terraform/terraform-aws-ec2-nginx-main/terraform.tfvars
             cd terraform/terraform-aws-ec2-nginx-main/
             terraform init

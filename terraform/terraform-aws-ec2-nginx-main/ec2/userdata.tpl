@@ -8,7 +8,7 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 snap install kubectl --classic
 sudo apt install conntrack -y
-sudo apt install jq -y
+
 
 
 #### install cri-dockerd
