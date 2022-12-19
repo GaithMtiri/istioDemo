@@ -95,7 +95,16 @@ jobs:
             chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
             cat expose_app.sh | ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip /bin/bash
-
+  scenario1:
+    docker: 
+        - image: hashicorp/terraform:light
+        steps:
+          - run:
+            name: "say-hey"
+            command: echo hey
+          - run:
+            name: "say-hey2"
+            command: echo hey22
 workflows:
   say-hello-workflow:
     jobs:
@@ -106,14 +115,8 @@ workflows:
       - deploy_istio:
           requires:
             - configure_minikube
-  scenario1:
-      docker: 
-      - image: hashicorp/terraform:light
-      steps:
-        - run:
-          name: "say-hey"
-          command: echo hey
-        - run:
-          name: "say-hey2"
-          command: echo hey22
+  scenario:
+    jobs:
+      - scenario1
+      
             
