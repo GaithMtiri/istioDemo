@@ -58,7 +58,7 @@ jobs:
             chmod 400 key.pem
             ip=$(sed 's/.//;s/.$//' ip.txt)
             ssh  -o BatchMode=yes -o StrictHostKeyChecking=no -i key.pem ubuntu@$ip \
-            'sudo minikube start --vm-driver=none; sleep 120; sudo kubectl apply -f https://docs.projectcalico.org/manifests/calico-typha.yaml; sudo curl -L https://istio.io/downloadIstio | sh -'
+            'sudo minikube start --vm-driver=none; sleep 120; sudo kubectl apply -f https://docs.projectcalico.org/manifests/calico-typha.yaml'
   
   deploy_istio:
     docker: 
@@ -71,7 +71,7 @@ jobs:
           name: "deploy_app"
           command: |
             sleep 120
-            mv expose_app.sh ./expose_app.sh
+            mv expose_app.sh ./
             cd ./
             cat key.pem
             chmod 400 key.pem
